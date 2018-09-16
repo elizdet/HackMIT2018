@@ -1,0 +1,37 @@
+body {
+    background-color: white;
+}
+h1 {
+    color: blue;
+}
+
+input {
+    width: 100%;
+}
+
+.flex-container-textAndUploadButton {
+    display: flex;
+    justify-content: center;
+    padding: 48px;
+}
+
+.textInd {
+    display: block;
+    margin: 10px;
+}
+
+.buttonInd {
+    display: block;
+    width: 600px;
+}
+
+button {
+    background-color: #4CAF50; /* Green */
+    border: none;
+    color: white;
+    padding: 10px 15px;
+    text-align: center;
+    text-decoration: none;
+    /* display: inline-block; */
+    font-size: 12px;
+}
