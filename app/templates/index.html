@@ -2,6 +2,7 @@
 <html>
     <head>
         <link rel="stylesheet" href="styles.css">
+        <meta charset="utf-8"/>
         <title>
             HackMIT2018 Photo Upload
         </title>
@@ -13,14 +14,18 @@
         <i>Upload a picture here. We will analyze it to detect your mood, and we will respond accordingly with encouragement! </i>
         <div class="flex-container-textAndUploadButton">
             <div class="textInd">
-                <input type="text" name="url" placeholder="Picture URL" size="100"><br>
+                <input type="text" name="url" placeholder="Picture URL" id="url_text_field" size="100"><br>
             </div>
             <div class="buttonInd">
-                <button onclick="sendAlert('abcccc')" autofocus>Upload a picture of your face!</button>
+                <button onclick="sendAlert()" autofocus>Upload a picture of your face!</button>
             </div>
         </div>
         <p>
-            The results are: 
+            <div>
+                <h3>
+                {{ results }}
+                </h3>
+            </div>
         </p>
         <script src="app.js"></script>
     </body>

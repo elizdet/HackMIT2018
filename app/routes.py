@@ -1,21 +1,15 @@
-from flask import Flask, request
+from flask import Flask, request, render_template
 import requests
 import os
 import json
+import time
 
 
 app = Flask(__name__)
 
 subscription_key = "ec897a8cde484a4f9571c53708dc472a"
 
-
-@app.route('/', methods=['POST'])
-def index():
-    #content = request.get
-    azure_api()
-
-                                                           
-def azure_api():
+def azure_api(img_url):
     uri_base = 'https://westus.api.cognitive.microsoft.com'
     # Request headers. header = json or octet-stream
     headers = {
@@ -34,7 +28,7 @@ def azure_api():
     #image_data = open(image_path, "rb").read()
 
     # Body. The URL of a JPEG image to analyze.
-    body = {'url': 'https://upload.wikimedia.org/wikipedia/commons/c/c3/RH_Louise_Lillian_Gish.jpg'}
+    body = {'url': img_url}
 
 
     try:
@@ -58,5 +52,17 @@ def azure_api():
         print(e)
 
 
+
+
+@app.route('/', methods=['POST'])
+def index():
+    results = azure_api(request.data)
+    requests.post("http://localhost:8000", json=results)
+    # Can do anything with request.data now 
+    return render_template('index.html', results= "tstesults1")
+                                                           
+
+
 if __name__ == '__main__':
-     azure_api()
+    #  azure_api()
+    app.run()
