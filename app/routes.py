@@ -52,17 +52,26 @@ def azure_api(img_url):
         print(e)
 
 
-
-
-@app.route('/', methods=['POST'])
+@app.route('/', methods=['GET','POST'])
 def index():
-    results = azure_api(request.data)
-    requests.post("http://localhost:8000", json=results)
+    results = None
+    if request.method == 'POST':
+        results = azure_api(request.data)
+    #requests.post("http://localhost:8000", json=results)
     # Can do anything with request.data now 
-    return render_template('index.html', results= "tstesults1")
+    return render_template('index.html', results= results)
                                                            
 
+@app.route('/upload/', methods=['POST'])
+def upload():
+    print("This is in post")
+    print(request.data.decode("utf-8") )
+    if request.data is not None:
+        results = azure_api(request.data.decode("utf-8") )
+    #requests.post("http://localhost:8000", json=results)
+    # Can do anything with request.data now
+    return render_template('index.html', results= results)
 
 if __name__ == '__main__':
     #  azure_api()
-    app.run()
+    app.run(debug=True)
